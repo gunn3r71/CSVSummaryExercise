@@ -8,5 +8,5 @@
     </ul>
   <li>Execute o programa</li>
   <li>Passe o diretório e o arquivo para o programa (Ex. C:\MinhaPasta\meuarquivo.csv)</li>
-  <li>No final, será gerada uma pasta <b>out<b> com um arquivo <b>summary.csv</b> contendo o nome do produto, e o valor total</li>
+  <li>No final, será gerada uma pasta <b>out</b> com um arquivo <b>summary.csv</b> contendo o nome do produto, e o valor total</li>
 </ol>

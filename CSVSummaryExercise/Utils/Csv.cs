@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Net.NetworkInformation;
 using CSVSummaryExercise.Entities;
+using CSVSummaryExercise.Extension;
 
 namespace CSVSummaryExercise.Utils
 {
@@ -34,14 +35,6 @@ namespace CSVSummaryExercise.Utils
             }
         }
 
-        private static string CreateDirectory(string path, string directoryName)
-        {
-            var newDirectory = path +  @$"\{directoryName}";
-
-            Directory.CreateDirectory(newDirectory);
-
-            return newDirectory;
-        }
 
         private static void ProcessingData(string path)
         {
@@ -58,7 +51,7 @@ namespace CSVSummaryExercise.Utils
 
                 var directoryPath = CreateDirectory(Path.GetDirectoryName(path), "out");
 
-                var filePath = directoryPath + "summary.csv";
+                var filePath = directoryPath + "summary.csv".ToDirectory();
 
                 FillSummary(ref orders, filePath);
             }
@@ -70,12 +63,20 @@ namespace CSVSummaryExercise.Utils
             {
                 foreach (var order in orders)
                 {
-                    var total = order.Price * order.Quantity;
-                    writer.WriteLine($"{order.ProductName}, {total.ToString("F2", CultureInfo.InvariantCulture)}");
+                    writer.WriteLine($"{order.ProductName}, {order.CalculateTotalAmount().ToString("F2", CultureInfo.InvariantCulture)}");
                 }
 
                 Console.WriteLine($"Operation completed, file created in {filePath}");
             }
+        }
+
+        private static string CreateDirectory(string path, string directoryName)
+        {
+            var newDirectory = path + $"{directoryName}".ToDirectory();
+
+            Directory.CreateDirectory(newDirectory);
+
+            return newDirectory;
         }
 
         private static Order ConvertToOrder(string[] line)

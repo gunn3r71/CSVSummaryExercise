@@ -52,9 +52,8 @@ namespace CSVSummaryExercise.Utils
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine().Split(",");
-                    var order = new Order(line[ProductName], double.Parse(line[Price], CultureInfo.InvariantCulture), int.Parse(line[Quantity]));
 
-                    orders.Add(order);
+                    orders.Add(ConvertToOrder(line));
                 }
 
                 var directoryPath = CreateDirectory(Path.GetDirectoryName(path), "out");
@@ -77,6 +76,11 @@ namespace CSVSummaryExercise.Utils
 
                 Console.WriteLine($"Operation completed, file created in {filePath}");
             }
+        }
+
+        private static Order ConvertToOrder(string[] line)
+        {
+            return new Order(line[ProductName], double.Parse(line[Price], CultureInfo.InvariantCulture), int.Parse(line[Quantity]));
         }
     }
 }

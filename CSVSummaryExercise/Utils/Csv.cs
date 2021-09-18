@@ -66,7 +66,7 @@ namespace CSVSummaryExercise.Utils
                     writer.WriteLine($"{order.ProductName}, {order.CalculateTotalAmount().ToString("F2", CultureInfo.InvariantCulture)}");
                 }
 
-                Console.WriteLine($"Operation completed, file created in {filePath}");
+                Console.WriteLine($"Operation completed, file created at {filePath}");
             }
         }
 

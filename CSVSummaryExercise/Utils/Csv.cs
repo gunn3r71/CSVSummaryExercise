@@ -20,7 +20,7 @@ namespace CSVSummaryExercise.Utils
                 if (!File.Exists(path))
                     throw new IOException("File not found");
 
-                ReadCsv(path);
+                ProcessingData(path);
             }
             catch (IOException e)
             {
@@ -43,7 +43,7 @@ namespace CSVSummaryExercise.Utils
             return newDirectory;
         }
 
-        private static void ReadCsv(string path)
+        private static void ProcessingData(string path)
         {
             using (var reader = File.OpenText(path))
             {
